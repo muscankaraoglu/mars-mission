@@ -121,7 +121,7 @@ for (int i = 0; i < rovers.Count; i++)
                         currentY += 1;
                         if (currentY > plateau.Height)
                         {
-                            Console.WriteLine("Rover #{0} has fall :( Mission Failed", i);
+                            Console.Error.WriteLine("Rover #{0} has fall :( Mission Failed", i);
                             incomplete = true;
                             break;
                         }
@@ -130,7 +130,7 @@ for (int i = 0; i < rovers.Count; i++)
                         currentX += 1;
                         if (currentY > plateau.Width)
                         {
-                            Console.WriteLine("Rover #{0} has fall :( Mission Failed", i);
+                            Console.Error.WriteLine("Rover #{0} has fall :( Mission Failed", i);
                             incomplete = true;
                             break;
                         }
@@ -139,7 +139,7 @@ for (int i = 0; i < rovers.Count; i++)
                         currentY -= 1;
                         if (currentY < 0)
                         {
-                            Console.WriteLine("Rover #{0} has fall :( Mission Failed", i);
+                            Console.Error.WriteLine("Rover #{0} has fall :( Mission Failed", i);
                             incomplete = true;
                             break;
                         }
@@ -148,7 +148,7 @@ for (int i = 0; i < rovers.Count; i++)
                         currentX -= 1;
                         if (currentY < 0)
                         {
-                            Console.WriteLine("Rover #{0} has fall :( Mission Failed", i);
+                            Console.Error.WriteLine("Rover #{0} has fall :( Mission Failed", i);
                             incomplete = true;
                             break;
                         }
@@ -158,13 +158,13 @@ for (int i = 0; i < rovers.Count; i++)
                 }
                 if (rovers.Any(i => i.X == currentX && i.Y == currentY))
                 {
-                    Console.WriteLine("Your rovers has crashed :(");
+                    Console.Error.WriteLine("Your rovers has crashed :(");
                     incomplete = true;
                     break;
                 }
                 break;
             default:
-                Console.Error.WriteLine("Instructions has invalid command character. It passed.");
+                Console.Error.WriteLine("Instructions has invalid command character. It's ignored.");
                 break;
         }
     }

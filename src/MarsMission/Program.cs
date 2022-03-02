@@ -1,5 +1,5 @@
 ﻿using MarsMission.Models;
-
+//TODO: Seperate program by methods
 Console.WriteLine("Welcome to Mars Mission!");
 GetSize:
 //Get Plateau Size
@@ -81,7 +81,7 @@ GetInstructions:
         goto GetInstructions;
     }
     instructions = instructions.ToUpper();
-    Rover rover = new Rover(locationX, locationY, direction, instructions);
+    Rover rover = new(locationX, locationY, direction, instructions);
     rovers.Add(rover);
     goto GetInitialPosition;
 }
@@ -128,7 +128,7 @@ for (int i = 0; i < rovers.Count; i++)
                         break;
                     case Direction.E:
                         currentX += 1;
-                        if (currentY > plateau.Width)
+                        if (currentX > plateau.Width)
                         {
                             Console.Error.WriteLine("Rover #{0} has fall :( Mission Failed", i);
                             incomplete = true;

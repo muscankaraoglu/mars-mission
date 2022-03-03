@@ -1,41 +1,34 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using MarsMission.Models;
 
-namespace MarsMission.Models
+namespace MarsMission.Services
 {
-    public class Plateau
+    public static class PlateauService
     {
-        public Plateau(int width, int height)
-        {
-            Width = width;
-            Height = height;
-        }
-        public int Width { get; set; }
-        public int Height { get; set; }
-
         /// <summary>
         /// Gets plateau object by using stdin values.
         /// </summary>
-        Plateau GetPlateau()
+        public static Plateau? GetPlateau(string? widthAndHeightInput = null)
         {
             GetSize:
             //Get Plateau Size
             Console.Write("Please enter the plateau size:");
-            string? widthAndHeight = Console.ReadLine();
+            bool isInputable = string.IsNullOrEmpty(widthAndHeightInput);
+            string? widthAndHeight = string.IsNullOrEmpty(widthAndHeightInput) ? Console.ReadLine() : widthAndHeightInput;
             while (string.IsNullOrEmpty(widthAndHeight))
             {
                 Console.WriteLine("Please enter size!");
-                goto GetSize;
+                if(isInputable)
+                    goto GetSize;
+                return null;
             }
             string[] dimensions = widthAndHeight.Split(" ");
             bool isValidLengthWidthAndHeight = dimensions.Length == 2;
             while (!isValidLengthWidthAndHeight)
             {
                 Console.WriteLine("Please enter valid dimensions e.[X Y]!");
-                goto GetSize;
+                if (isInputable)
+                    goto GetSize;
+                return null;
             }
             int width, height;
             bool tryWidth = int.TryParse(dimensions[0], out width);
@@ -43,12 +36,16 @@ namespace MarsMission.Models
             while (!tryWidth || !tryHeight)
             {
                 Console.WriteLine("Please enter valid dimensions as integer e.[5 5]!");
-                goto GetSize;
+                if (isInputable)
+                    goto GetSize;
+                return null;
             }
             while (width < 1 || height < 1)
             {
                 Console.WriteLine("Please enter valid dimensions minimum plateau width and height is 1 1!");
-                goto GetSize;
+                if (isInputable)
+                    goto GetSize;
+                return null;
             }
             return new Plateau(width, height);
         }

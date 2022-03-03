@@ -1,14 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace MarsMission.Models
+﻿namespace MarsMission.Models
 {
     public class Rover
     {
-        public Rover(int x, int y, char direction,string instructions)
+        public Rover(int x, int y, char direction, string instructions)
         {
             X = x;
             Y = y;

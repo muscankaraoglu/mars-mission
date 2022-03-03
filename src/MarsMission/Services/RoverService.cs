@@ -167,10 +167,13 @@ Exit:
                             }
                             if (rovers.Any(i => i.X == currentX && i.Y == currentY))
                             {
-                                Console.Error.WriteLine("Your rovers has crashed :(");
+                                Console.Error.WriteLine("Your rovers has crashed :( There is a rover at these coordinates {0} {1}",currentX, currentY);
                                 incomplete = true;
-                                break;
+                                return;
                             }
+                            rovers[i].X = currentX;
+                            rovers[i].Y = currentY;
+                            rovers[i].Direction = currentDirection;
                             break;
                         default:
                             Console.Error.WriteLine("Instructions has invalid command character. It's ignored.");
@@ -180,9 +183,7 @@ Exit:
                 if (!incomplete)
                 {
                     //Place up the rover
-                    rovers[i].X = currentX;
-                    rovers[i].Y = currentY;
-                    Console.WriteLine("{0}. instructions has completed, latest location is:{1} {2} {3}", i, currentX, currentY, currentDirection);
+                    Console.WriteLine("Instruction {0} has completed, Rover #{0} latest location is:{1} {2} {3}", i, currentX, currentY, currentDirection);
                 }
             }
         }

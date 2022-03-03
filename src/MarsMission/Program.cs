@@ -1,5 +1,4 @@
-﻿using MarsMission.Models;
-using MarsMission.Services;
+﻿using MarsMission.Services;
 
 Console.WriteLine("Welcome to Mars Mission!");
 

@@ -28,7 +28,7 @@ namespace MarsMission.Tests
         [Test]
         public void TestRoverCreation()
         {
-            rovers = RoverService.GetRoversAndInstructions(new Plateau(5,5), "2 2 E", "MMRMR");
+            rovers = RoverService.GetRoversAndInstructions(new Plateau(5, 5), "2 2 E", "MMRMR");
             Assert.IsNotNull(rovers);
             Assert.AreEqual(1, rovers.Count);
             Assert.AreEqual(1, RoverService.GetRoversAndInstructions(new Plateau(5, 5), "1 1 E", "MM").Count);

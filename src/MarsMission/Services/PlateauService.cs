@@ -9,15 +9,15 @@ namespace MarsMission.Services
         /// </summary>
         public static Plateau? GetPlateau(string? widthAndHeightInput = null)
         {
-            GetSize:
-            //Get Plateau Size
+GetSize:
+//Get Plateau Size
             Console.Write("Please enter the plateau size:");
             bool isInputable = string.IsNullOrEmpty(widthAndHeightInput);
             string? widthAndHeight = string.IsNullOrEmpty(widthAndHeightInput) ? Console.ReadLine() : widthAndHeightInput;
             while (string.IsNullOrEmpty(widthAndHeight))
             {
                 Console.WriteLine("Please enter size!");
-                if(isInputable)
+                if (isInputable)
                     goto GetSize;
                 return null;
             }

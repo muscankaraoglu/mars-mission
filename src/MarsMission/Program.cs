@@ -25,6 +25,11 @@ while (!tryWidth || !tryHeight)
     Console.WriteLine("Please enter valid dimensions as integer e.[5 5]!");
     goto GetSize;
 }
+while (width < 1 || height < 1)
+{
+    Console.WriteLine("Please enter valid dimensions minimum plateau width and height is 1 1!");
+    goto GetSize;
+}
 Plateau plateau = new Plateau(width, height);
 
 List<Rover> rovers = new List<Rover>();
@@ -58,6 +63,11 @@ while (initialRoverPosition != "GO")
         Console.WriteLine("Please enter valid position as integer and char e.[5 5 N]!");
         goto GetInitialPosition;
     }
+    while (rovers.Any(i => i.X == locationX && i.Y == locationY))
+    {
+        Console.WriteLine("There is already a rover existing. Please enter another initial location e.[5 5 N]!");
+        goto GetInitialPosition;
+    }
     bool isValidDirectionKey = direction == 'N' || direction == 'S' || direction == 'W' || direction == 'E';
     while (!isValidDirectionKey)
     {
@@ -85,7 +95,7 @@ GetInstructions:
     rovers.Add(rover);
     goto GetInitialPosition;
 }
-if(rovers.Count == 0)
+if (rovers.Count == 0)
 {
     Console.WriteLine("You have not send any rovers to Mars");
     return;
